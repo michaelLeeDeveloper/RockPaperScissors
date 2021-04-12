@@ -1,0 +1,70 @@
+<script>
+    function computerPlay(){
+        let randomNum = Math.floor(Math.random() * 2);
+        switch(randomNum) {
+            case 0: 
+                return "Rock";
+                break;
+            case 1:
+                return "Paper";
+                break;
+            case 2: 
+                return "Scissors";
+                break;
+        }
+    }
+
+    function playRound(playerSelection, computerSelection){
+        playerSelection = playerSelection.toLowerCase();
+        console.log("Computer played " + computerSelection);
+        if(computerSelection =="Rock"){
+            if(playerSelection == "rock"){
+                return "Draw. Both players selected " + computerSelection;
+            }
+            if(playerSelection == "paper"){
+                return "You win!! Paper beats " + computerSelection;
+            }
+            if(playerSelection == "scissors"){
+                return "You lose! Rock beats Scissors";
+            }
+        }
+        if(computerSelection =="Paper"){
+            if(playerSelection == "rock"){
+                return "You lose! Paper beats Rock";
+            }
+            if(playerSelection == "paper"){
+                return "Draw. Both players selected Paper";
+            }
+            if(playerSelection == "scissors"){
+                return "You win!! Scissors beats Paper";
+            }
+        }
+        if(computerSelection =="Scissors"){
+            if(playerSelection == "rock"){
+                return "You win!! Rock beats Scissors";
+            }
+            if(playerSelection == "paper"){
+                return "You lose! Scissors beats Paper";
+            }
+            if(playerSelection == "scissors"){
+                return "Draw. Both players selected Scissors";
+            }
+        }
+    }
+
+    function game(rounds){
+        let count = 0;
+        for(let i = 0; i < rounds; i++){
+            let placeHolder = (playRound(prompt("Ready, Set, Go!(Enter rock, paper or scissors)"), computerPlay()));
+            if(placeHolder.includes("You win")){
+                count++;
+            }
+        }
+        if(count > rounds/2){
+            console.log("You won " + count + " out of " + rounds + " rounds. YOU WIN!!!");
+        }else {
+            console.log("You won " + count + " out of " + rounds + " rounds. You lost...");
+        }
+    }
+    console.log(game(prompt("How many rounds?")));
+</script>
