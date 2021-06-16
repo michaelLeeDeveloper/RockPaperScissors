@@ -1,1 +1,1 @@
-# RockPaperScissors
+This is a game that plays rock, paper, scissors based off of a user input.

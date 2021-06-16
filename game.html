@@ -1,70 +1,44 @@
-<script>
-    function computerPlay(){
-        let randomNum = Math.floor(Math.random() * 2);
-        switch(randomNum) {
-            case 0: 
-                return "Rock";
-                break;
-            case 1:
-                return "Paper";
-                break;
-            case 2: 
-                return "Scissors";
-                break;
-        }
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    function playRound(playerSelection, computerSelection){
-        playerSelection = playerSelection.toLowerCase();
-        console.log("Computer played " + computerSelection);
-        if(computerSelection =="Rock"){
-            if(playerSelection == "rock"){
-                return "Draw. Both players selected " + computerSelection;
-            }
-            if(playerSelection == "paper"){
-                return "You win!! Paper beats " + computerSelection;
-            }
-            if(playerSelection == "scissors"){
-                return "You lose! Rock beats Scissors";
-            }
-        }
-        if(computerSelection =="Paper"){
-            if(playerSelection == "rock"){
-                return "You lose! Paper beats Rock";
-            }
-            if(playerSelection == "paper"){
-                return "Draw. Both players selected Paper";
-            }
-            if(playerSelection == "scissors"){
-                return "You win!! Scissors beats Paper";
-            }
-        }
-        if(computerSelection =="Scissors"){
-            if(playerSelection == "rock"){
-                return "You win!! Rock beats Scissors";
-            }
-            if(playerSelection == "paper"){
-                return "You lose! Scissors beats Paper";
-            }
-            if(playerSelection == "scissors"){
-                return "Draw. Both players selected Scissors";
-            }
-        }
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="./styles.css" rel="stylesheet">
+    <title>Rock Paper Scissors</title>
+</head>
 
-    function game(rounds){
-        let count = 0;
-        for(let i = 0; i < rounds; i++){
-            let placeHolder = (playRound(prompt("Ready, Set, Go!(Enter rock, paper or scissors)"), computerPlay()));
-            if(placeHolder.includes("You win")){
-                count++;
-            }
-        }
-        if(count > rounds/2){
-            console.log("You won " + count + " out of " + rounds + " rounds. YOU WIN!!!");
-        }else {
-            console.log("You won " + count + " out of " + rounds + " rounds. You lost...");
-        }
-    }
-    console.log(game(prompt("How many rounds?")));
-</script>
+<body class="bg-dark">
+
+    <div class="container text-center text-primary">
+        <h1>Rock, Paper, Scissors, Go!</h1>
+    </div>
+    <div class="row text-center">
+        <div class="col"><button class="btn" id="rockButton">
+                <img src="data:image/png;base64,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"
+                    alt="rock">
+            </button></div>
+        <div class="col"><button class="btn" id="scissorsButton">
+                <img src="https://e7.pngegg.com/pngimages/4/558/png-clipart-cartoon-scissors-drawing-carpentry-pics-animation-line.png"
+                    alt="scissors">
+            </button></div>
+        <div class="col"><button class="btn" id="paperButton">
+                <img src="https://banner2.cleanpng.com/20180324/fww/kisspng-paper-nominaldefinition-notebook-language-messy-images-5ab64c5b6713e1.5747135715218965394222.jpg"
+                    alt="paper">
+            </button></div>
+    </div>
+
+
+    <div class="row">
+        <h1 class="text-primary text-center" id="text"></h1>
+    </div>
+
+
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
